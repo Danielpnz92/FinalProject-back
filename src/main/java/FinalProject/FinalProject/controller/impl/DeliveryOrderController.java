@@ -44,11 +44,15 @@ public class DeliveryOrderController implements IDeliveryOrderController {
         deliveryOrderService.createDeliveryOrder(deliveryOrder);
     }
 
-    public void updateDeliveryOrder(@RequestBody @Valid PlatesDTO platesDTO, Integer id) {
+    @PatchMapping("/orders/modify/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateDeliveryOrder(@RequestBody @Valid PlatesDTO platesDTO, @PathVariable(name = "id") Integer id) {
         deliveryOrderService.updateDeliveryOrder(platesDTO.getOrderDetails(), id);
     }
 
-    public void deleteDeliveryOrder(Integer id) {
+    @PatchMapping("/orders/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteDeliveryOrder(@PathVariable(name = "id") Integer id) {
         deliveryOrderService.deleteDeliveryOrder(id);
     }
 }
