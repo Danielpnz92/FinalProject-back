@@ -6,6 +6,7 @@ import FinalProject.FinalProject.model.Plates;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public interface IDeliveryOrderServive {
     //---------GET---------//
@@ -14,7 +15,7 @@ public interface IDeliveryOrderServive {
     //---------POST---------//
     void createDeliveryOrder(DeliveryOrder deliveryOrder);
     //---------PATCH---------//
-    void updateDeliveryOrder(HashMap<Plates, OrderQuantity> orderDetails, Integer id);
+    void updateDeliveryOrder(List<OrderQuantity> platesQuantity, Set<Plates> platesSet, Integer id);
     //---------DELETE---------//
     void deleteDeliveryOrder(Integer id);
 }

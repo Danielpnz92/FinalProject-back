@@ -1,6 +1,5 @@
 package FinalProject.FinalProject.controller.impl;
 
-import FinalProject.FinalProject.controller.DTO.createPlateDTO;
 import FinalProject.FinalProject.controller.interfaces.IPlatesController;
 import FinalProject.FinalProject.model.Plates;
 import FinalProject.FinalProject.model.User;

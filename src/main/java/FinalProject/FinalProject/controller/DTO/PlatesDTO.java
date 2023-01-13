@@ -5,22 +5,33 @@ import FinalProject.FinalProject.model.Plates;
 import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
 public class PlatesDTO {
 
-    private HashMap<Plates, OrderQuantity> orderDetails;
+    private Set<Plates> platesSet;
+    private List<OrderQuantity> platesQuantity;
 
-    public PlatesDTO(HashMap<Plates, OrderQuantity> orderDetails) {
-        this.orderDetails = orderDetails;
+    public PlatesDTO(Set<Plates> platesSet, List<OrderQuantity> platesQuantity) {
+        this.platesSet = platesSet;
+        this.platesQuantity = platesQuantity;
     }
 
-    public HashMap<Plates, OrderQuantity> getOrderDetails() {
-        return orderDetails;
+    public Set<Plates> getPlatesSet() {
+        return platesSet;
     }
 
-    public void setOrderDetails(HashMap<Plates, OrderQuantity> orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setPlatesSet(Set<Plates> platesSet) {
+        this.platesSet = platesSet;
+    }
+
+    public List<OrderQuantity> getPlatesQuantity() {
+        return platesQuantity;
+    }
+
+    public void setPlatesQuantity(List<OrderQuantity> platesQuantity) {
+        this.platesQuantity = platesQuantity;
     }
 }

@@ -47,7 +47,7 @@ public class DeliveryOrderController implements IDeliveryOrderController {
     @PatchMapping("/orders/modify/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateDeliveryOrder(@RequestBody @Valid PlatesDTO platesDTO, @PathVariable(name = "id") Integer id) {
-        deliveryOrderService.updateDeliveryOrder(platesDTO.getOrderDetails(), id);
+        deliveryOrderService.updateDeliveryOrder(platesDTO.getPlatesQuantity(), platesDTO.getPlatesSet(), id);
     }
 
     @PatchMapping("/orders/delete/{id}")

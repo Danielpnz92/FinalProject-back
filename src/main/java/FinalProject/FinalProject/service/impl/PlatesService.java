@@ -1,6 +1,5 @@
 package FinalProject.FinalProject.service.impl;
 
-import FinalProject.FinalProject.controller.DTO.createPlateDTO;
 import FinalProject.FinalProject.model.AllergensValues;
 import FinalProject.FinalProject.model.DeliveryOrder;
 import FinalProject.FinalProject.model.Plates;

@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -60,17 +59,30 @@ public class DeliveryOrderService implements IDeliveryOrderServive {
 
     }
 
-    public void updateDeliveryOrder(HashMap<Plates, OrderQuantity> orderDetails, Integer id) {
+    public void updateDeliveryOrder(List<OrderQuantity> platesQuantity, Set<Plates> platesSet, Integer id) {
+    //Siguiendo la misma lógica que para la creación de la orden:
+
+        //Primero instanciamos las cantidades en la tabla de OrderQuantity si no existen ya
+        for (OrderQuantity orderQuantity : platesQuantity) {
+            OrderQuantity oq = new OrderQuantity(orderQuantity.getQuantity());
+            orderQuantityRepository.save(oq);
+        }
+
+        for (Plates plates : platesSet) {
+            System.out.println(plates);
+        }
+
         //el pedido podrá ser modificado en los 5 minutos siguientes a haber sido creado
         DeliveryOrder deliveryOrder = getDeliveryOrderById(id);
         Date nowTime = new Date();
         int diffInMinutes = (int)( (nowTime.getTime() - deliveryOrder.getCreationDate().getTime())
                 / (1000 * 60));
+        System.out.println(diffInMinutes);
         if(diffInMinutes < 5) {
-            //el parámetro de entrada es un hashmap, que posteriormente se mapea como set de platos y lista
-            //de cantidades a las variables correspondientes de la clase "deliveryOrder"
-           /* deliveryOrder.setPlatesSet(orderDetails.keySet());*/
-            /*deliveryOrder.setPlatesQuantity(Set.copyOf(orderDetails.values()));*/
+            //se sustituye el set actual de platos y su array de cantidades
+            System.out.println(platesQuantity);
+            deliveryOrder.setPlatesSet(platesSet);
+            deliveryOrder.setPlatesQuantity(platesQuantity);
         }
         else throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,"More than 5 minute have passed since the order was created");
